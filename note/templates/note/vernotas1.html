@@ -1,0 +1,19 @@
+{% extends "note/indice.html" %}
+{% block content %}
+
+	<p id="subtitulo">Mis Carpetas</p>
+
+	<p id="contenido">Elige una carpeta</p>
+
+	{% for a in listaF %}
+	<ul class="b">
+		<center><li><a class="btn btn-default" href="/listarnota/{{a}}">{{a}}</a></li>	
+	</ul>		
+	{% endfor %}
+
+	<br>
+
+	<input type="button" value="Volver atrás" onclick="history.back()" style="font-family: Verdana; font-size: 10 pt">
+
+	<br>
+{% endblock content %}

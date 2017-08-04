@@ -1,0 +1,19 @@
+{% extends "note/indice.html" %}
+{% block content %}
+
+	<p id="subtitulo">Crear Nuevas Notas</p>
+	<center><p>Elige la carpeta en donde quieres guardar tu nota: </p>
+
+	{% for a in listaF %}
+	 <ul class="b">
+		<li><a class="btn btn-default" href="/crearnotnombre/{{a}}">{{a}}</a></li>
+	</ul>
+	{% endfor %}
+
+	<br>
+
+<input type="button" value="Volver atrás" onclick="history.back()" style="font-family: Verdana; font-size: 10 pt">
+
+	<br>
+
+{% endblock content %}

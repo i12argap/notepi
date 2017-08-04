@@ -1,0 +1,18 @@
+{% extends "note/indice.html" %}
+{% block content %}
+
+	<p id="subtitulo">Crear Nueva Nota</p>
+	<center><p>Introduce el nombre de la nueva nota: </p>
+
+	<form id="borde" action="" method="POST">{% csrf_token %}
+	    {{form.as_p}}
+		<button type="submit">Crear Nota</button>
+	</form>
+
+	<br>
+	
+<input type="button" value="Volver atrás" onclick="history.back()" style="font-family: Verdana; font-size: 10 pt">
+
+	<br>
+
+{% endblock content %}

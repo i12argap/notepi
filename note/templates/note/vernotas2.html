@@ -1,0 +1,23 @@
+{% extends "note/indice.html" %}
+{% block content %}
+
+	<p id="subtitulo">Mis Notas</p>
+	<header>
+	<p> Estas en la carpeta {{ruta}}.</p>
+
+	{% for a in listaF %}
+	<ul class="b">	 
+		<center><li><a class="btn btn-default">{{a}}</a> <a title= "Leer Nota"><a class="boton_personalizado" href="/leernota/{{ruta}}/{{a}}"><span class="icon-file-text2"></span></a></a><a title= "Editar Nota"><a class="boton_personalizado" href="/editarnota/{{ruta}}/{{a}}"><span class="icon-pencil2"></span></a></a><a class="boton_personalizado" href="/borrarnota/{{ruta}}/{{a}}"><span class="icon-bin"></span></a>
+</li>	
+		
+	</ul>
+	{% endfor %}
+	</header>
+
+	 <br>
+
+<input type="button" value="Volver atrás" onclick="history.back()" style="font-family: Verdana; font-size: 10 pt">
+
+	<br>
+
+{% endblock content %}

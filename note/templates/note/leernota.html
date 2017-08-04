@@ -1,0 +1,20 @@
+{% extends "note/indice.html" %}
+{% block content %}
+
+<p id="subtitulo">Nota: {{nomb}}</p>
+
+<h2 class="caja">
+<p id="p1">Nota</p>
+<input type="hidden" id="myVar" name="variable" value="{{ leer }}">
+
+<script>
+var myVar = document.getElementById("myVar").value;
+document.getElementById("p1").innerHTML = myVar;
+</script>
+</h2>
+
+<input type="button" value="Volver atrás" onclick="history.back()" style="font-family: Verdana; font-size: 10 pt">
+
+	<br>
+
+{% endblock content %}

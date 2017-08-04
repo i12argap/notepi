@@ -1,0 +1,192 @@
+{
+	margin:0;
+	padding:0;
+}
+
+.titulo h1 {
+        color: #2bbaca ;
+	font-size: 36pt;
+    }
+
+.titulo {
+        background-color: #108c9a;
+        margin-top: 0;
+        padding: 10px 20px 10px 40px;
+    }
+
+body{
+        background-color: #f7f9f9;
+
+    }
+
+a { 
+	color: #000000; 
+  }
+
+ul.b {
+	text-align:center;
+
+   }
+header {
+	width:100%;
+}
+
+header nav {
+	width:90%;
+	max-width:1000px;
+	margin:20px auto;
+	background:#d0d3d4;
+}
+
+.menu_bar {
+	display:none;
+}
+
+header nav ul {
+	overflow:hidden;
+	list-style:none;
+}
+ 
+header nav ul li {
+	float:left;
+}
+
+header nav ul li a {
+	color:#484848;
+	padding:20px;
+	display:block;
+	text-decoration:none;
+}
+
+header nav ul li span {
+	margin-right:10px;
+}
+
+header nav ul li a:hover {
+	background:#f2f2f2;
+}
+
+section {
+	padding:20px;
+}
+
+@media screen and (max-width:800px ) {
+	header nav {
+		width:80%;
+		height:100%;
+		left:-100%;
+		margin:0;
+		position: fixed;
+	}
+ 
+	header nav ul li {
+		display:block;
+		float:none;
+		border-bottom:1px solid rgba(255,255,255, .3);
+	}
+ 
+	.menu_bar {
+		display:block;
+		width:100%;
+		background:#ccc;
+	}
+ 
+	.menu_bar .bt-menu {
+		display:block;
+		padding:20px;
+		background:#d0d3d4;
+		color:#484848;
+		text-decoration:none;
+		font-weight: bold;
+		font-size:25px;
+		-webkit-box-sizing:border-box;
+		-moz-box-sizing:border-box;
+		box-sizing:border-box;
+	}
+ 
+	.menu_bar span {
+		float:right;
+		font-size:40px;
+	}
+}
+
+footer{
+	background:#d0d3d4;
+	color:#037E8C;
+	clear:both;
+	padding:10px 0px;
+	text-align:center;
+	text-shadow: 0.1em 0.1em 0.05em #fff
+}
+
+
+ h1 {
+        color: #108c9a ;
+	font-size: 36pt;
+    }
+
+p.italic {
+    font-style: italic;
+}
+
+#subtitulo {
+	color: #2bbaca;
+	font-size: 20pt;
+	text-align: center;
+	font-weight: bold;
+	border-style: outset;
+	border-radius: 5px;
+	text-shadow: -1px 0 black, 0 1px black,
+	  1px 0 black, 0 -1px black, 0.1em 0.1em 0.05em #333
+	}
+	
+
+#contenido {
+	color: #000000;
+	font-size: 15pt;
+	text-align: center;
+	}
+
+
+#borde {
+	border: 2px solid #0edcf3;
+	background-color: lightgrey;
+	text-align: center;
+	border-style: outset;
+	border-radius: 5px;
+	}
+
+.boton_personalizado{
+    padding: 5px;
+    font-weight: 600;
+    font-size: 15px;
+    color: #108c9a;
+    background-color: lightgrey;
+    border-radius: 6px;
+    border: 1px solid #2bbaca;
+    border-style: outset;
+  }
+
+
+h2.caja {
+	font-weight: 100;
+	background:#ffffff;
+	padding: 0px 10px 50px 15px; 
+	border: 1px solid #108c9a;
+	border-style: outset;
+}
+
+.botonimagen{
+  background-image:url(editar.jpg);
+  background-repeat:no-repeat;
+  height:100px;
+  width:100px;
+  background-position:center;
+    }
+
+header img
+{
+	width:30%;
+ 	height:auto;
+}
+

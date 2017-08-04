@@ -1,0 +1,61 @@
+	{% load staticfiles %}
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<metacharset="UTF-8">
+		<title>Notepi</title>
+		<link rel="stylesheet" href="{% static 'css/estilo.css' %}">
+		<link rel="stylesheet" href="{% static 'css/fonts.css' %}">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	</head>
+	<body>
+		<header>
+			<div class="titulo">
+				<center><img src="/static/css/5.png " alt="">	
+			</div>
+
+			{% block opciones %}
+				<div class="menu_bar">
+					<a class="bt-menu" href="#"><span class="icon-menu"></span>Menu</a>
+				</div>
+			{% endblock opciones %}
+
+			<nav>
+				<ul>
+				<li><a href="{% url 'inicial' %}"><span class="icon-home"></span>Inicio</a></li>
+				{% if n %}
+					<li><a href="{% url 'mostrar' %}"><span class="icon-profile"></span>Mi Perfil</a></li>
+					<li><a href="{% url 'crear' %}"><span class="icon-pencil2"></span>Editar Perfil</a></li>
+					<li><a href="{% url 'carpeta' %}"><span class="icon-folder-open"></span>Mis Carpetas</a></li>
+					<li><a href="{% url 'crearnota' %}"><span class="icon-file-empty"></span>Crear Notas</a></li>
+					<li><a href="{% url 'listarcarpetaN' %}"><span class="icon-file-text2"></span>Mis Notas</a></li>
+					<li><a href="{% url 'cerrar' %}"><span class="icon-exit"></span>Cerrar Sesión</a></li>
+				{% else %}
+
+					<li><a href="{% url 'login' %}"><span class="icon-enter"></span>Iniciar Sesión</a></li> 
+					<li><a href="{% url 'nuevoUser' %}"><span class="icon-user"></span>Registrar</a></li>
+				
+
+				{% endif %}
+				</ul>
+			</nav>
+		</header>
+		<section class="cuerpo">
+
+			{% block content %}
+				<p>¡Bienvenido/a a Notepi!</p>
+				<p>Tu gestor de notas donde podrás crear todas las notas que desees y se quedarán almacenadas en tu Dropbox.</p>
+			{% endblock %}
+
+		</section>
+
+		<footer>
+			<p>© Todos los derechos reservados a Pilar Arjona </p>
+		</footer>
+	</body>
+
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src="{% static 'css/menu.js' %}"></script>
+
+</html>

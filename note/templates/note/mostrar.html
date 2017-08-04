@@ -1,0 +1,13 @@
+{% extends "note/indice.html" %}
+{% block content %}
+
+	<p id="subtitulo">Mi Perfil</p>
+	<p id="contenido">Nombre: {{nombre.nombre}}</p>
+	<p id="contenido">Edad: {{nombre.edad}}</p>
+	<p id="contenido">Token: {{nombre.token}}</p>
+
+	<br>
+<input type="button" value="Volver atrás" onclick="history.back()" style="font-family: Verdana; font-size: 10 pt">
+
+	 <br>	
+{% endblock content %}
