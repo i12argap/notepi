@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from models import Persona
-# Register your models here.
+from note.models import Persona
+#Register your models here.
 
 admin.site.register(Persona)

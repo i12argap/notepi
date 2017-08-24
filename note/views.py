@@ -1,3 +1,5 @@
+
+# -*- coding: utf-8 -*-
 from note.models import Persona
 from django.shortcuts import render
 from .models import Persona
@@ -11,7 +13,8 @@ from django.contrib.auth import authenticate, logout
 from django.contrib.auth import login as auth_login
 from note.forms import forma, NuevaCarpeta, NuevaNota, BookForm
 from note.appsfunciones  import DropNote
-
+import os, sys
+#encoding= utf-8
 def inicial(request):
 	if not request.user.is_anonymous():
 		n=True
@@ -134,11 +137,11 @@ def mostrar(request):
 def carpeta(request):
 
 	form = NuevaCarpeta()
-
+	
 	usuarios = str(request.user)
 	if not request.user.is_anonymous():
 		ad=Persona.objects.get(user=usuarios)
-
+	
 		n=True
 		
 	else:
@@ -146,36 +149,51 @@ def carpeta(request):
 	if n==False:
 		return HttpResponseRedirect('/entrar')
 	nombre=Persona.objects.get(user=usuarios)
-#Si no tienen guardado un token no podran acceder
+	#Si no tienen guardado un token no podran acceder
 	if not nombre.token=='indefinido':
-
+	
 		n=True
 		
 	else:
 		n=False
 	if n==False:
 		return HttpResponseRedirect('/crea')
-
-
+	
+	
 	a=DropNote(nombre.token)
-
+	
 	lista = a.list_folder()
-
-
+	
+	
 	if request.method=='POST':
- 
+	
 		form = NuevaCarpeta(request.POST)
- 
+	
 		if form.is_valid():
-
+	
 			cd = form.cleaned_data
 			nombrecarpeta = cd.get('nombrecarpeta')
-			crearcarpeta = a.crearcarpeta(nombrecarpeta)
-			return HttpResponseRedirect('/carpeta')
+			lista=["á".encode('utf-8'),"é".encode('utf-8'),"í".encode('utf-8'),"ó".encode('utf-8'),"ú".encode('utf-8'),"ñ".encode('utf-8'), "Á".encode('utf-8'),"É".encode('utf-8'),"Í".encode('utf-8'),"Ó".encode('utf-8'),"Ú".encode('utf-8'),"Ñ".encode('utf-8')]
+			error=False
+			var=nombrecarpeta
+			
+			for x in var:
+				print(x.encode('utf-8'))
+				if x.encode('utf-8') in lista:
+					error=True
+	
+			if(error==False):
+	
+				crearcarpeta = a.crearcarpeta(nombrecarpeta)
+				return HttpResponseRedirect('/carpeta')
+	                
+			else:
+				return HttpResponseRedirect('/carpeta')
+	
 	else:
 		form = NuevaCarpeta()
-
-
+	
+	
 	listaF=[]
 	for a in lista:
 		b=a.split("/")
@@ -251,11 +269,25 @@ def crearnotnombre(request, ruta):
 			cd = form.cleaned_data
 			nota = cd.get('nota')
 
-			nuevanota = a.crearnota(nota, ruta)
-			return HttpResponseRedirect('/')
+			lista=["á".encode('utf-8'),"é".encode('utf-8'),"í".encode('utf-8'),"ó".encode('utf-8'),"ú".encode('utf-8'),"ñ".encode('utf-8'), "Á".encode('utf-8'),"É".encode('utf-8'),"Í".encode('utf-8'),"Ó".encode('utf-8'),"Ú".encode('utf-8'),"Ñ".encode('utf-8')]
+			error=False
+			var=nota
+			
+			for x in var:
+				print(x.encode('utf-8'))
+				if x.encode('utf-8') in lista:
+					error=True
+
+			if(error==False):
+				
+				nuevanota = a.crearnota(nota, ruta)
+				return HttpResponseRedirect('/')
+			else:
+				return HttpResponseRedirect('/crearnotnombre/ruta')
+
+
 	else:
 		form = NuevaNota()
-
 
 	return render_to_response('note/crearnotnombre.html', locals(), context_instance=RequestContext(request))
 
@@ -433,7 +465,7 @@ def editarnota(request, ruta, nomb):
 		form = BookForm(request.POST)
 		if form.is_valid():
 #guardamos el texto con encode para dejarnos poner simbolos y tildes
-			texto=str(request.POST['text'].encode('utf-8'))
+			texto=request.POST['text'].encode('utf-8')
 			a.modificarnota(texto,"/"+ruta+"/"+nomb)
 			
 	else: 

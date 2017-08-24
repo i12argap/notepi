@@ -54,7 +54,7 @@ class DropNote(object):
 	
 		for x in metadata['contents']:
 
-			print (x['path'])
+			print (x['path'].encode('utf-8'))
 
 			if x['is_dir']==True:
 
@@ -71,9 +71,9 @@ class DropNote(object):
 
 #----
 #Creacion de notas
-	def crearnota(self, nombre, dir):
+	def crearnota(self, nombre, ruta):
 
-		resultado = self.client.put_file(dir+"/"+nombre, "",1)
+		resultado = self.client.put_file(ruta+"/"+nombre, "",1)
 
 
 #----
@@ -90,7 +90,7 @@ class DropNote(object):
 	
 		for x in metadata['contents']:
 
-			print (x['path'])
+			print(x['path'].encode('utf-8'))
 
 			lis.append(x['path'])
 		return lis
@@ -107,16 +107,16 @@ class DropNote(object):
 #----
 #Lectura de las notas
 	def leernota(self, ruta, fichero):
-		
-		fichero= ruta+"/"+fichero
-		
-		x = self.client.get_file(fichero)
-		
-		y=x.read()
-
-		x.close()
-
-		return y
+    
+			fichero=ruta+"/"+fichero
+            
+			x = self.client.get_file(fichero)
+            
+			y=x.read()
+            
+			x.close()
+            
+			return y
 
 
 #----

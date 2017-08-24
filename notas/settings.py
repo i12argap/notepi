@@ -26,7 +26,7 @@ SECRET_KEY = '(s3=2n*yblb2pdyod496p=ue39%dt1imd7bd5&^yopb3h+epbj'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['informaticapccar.com']
 MEDIA_ROOT = os.path.join(RUTA_PROYECTO,'images')
 MEDIA_URL = '/media/'
 
@@ -73,7 +73,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'notas.wsgi.application'
+#WSGI_APPLICATION = 'notas.wsgi.application'
 
 
 # Database
@@ -123,8 +123,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT ='/note/static'
+STATIC_URL = '/note/static/'
+#STATIC_URL = '/static/'
+STATIC_ROOT ='/home/informaticapccar/www/note/static'
+#STATIC_ROOT ='/note/static'
 
 
 _2_MB = 2048000

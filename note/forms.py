@@ -17,7 +17,7 @@ class forma(ModelForm):
 
 class SingUpForm(ModelForm):
         password = forms.CharField(widget=forms.PasswordInput(render_value = False), required = True) 
-	class Meta:
+class Meta:
 		model = User
 		fields = ['username', 'password', 'first_name', 'email']	
 		widgets = {
