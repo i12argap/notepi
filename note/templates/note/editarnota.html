@@ -54,6 +54,17 @@ footer{
 		font-size: 36pt;
     }
 
+.boton_personalizado{
+    padding: 5px;
+    font-weight: 600;
+    font-size: 15px;
+    color: #108c9a;
+    background-color: lightgrey;
+    border-radius: 6px;
+    border: 1px solid #2bbaca;
+    border-style: outset;
+  }
+  
 header img
 {
 	width:30%;
@@ -69,8 +80,9 @@ header img
 
 		</header>
 
-<input type="button" value="Volver atrás" onclick="history.back()" style="font-family: Verdana; font-size: 10 pt">
-
+<br>
+          <a class="boton_personalizado" href="/listarnota/{{ruta}}">Volver atrás</a>
+          
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
         <h1 class="ideia-title">Nota: {{nomb}}</h1>

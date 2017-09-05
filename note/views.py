@@ -279,11 +279,10 @@ def crearnotnombre(request, ruta):
 					error=True
 
 			if(error==False):
-				
 				nuevanota = a.crearnota(nota, ruta)
-				return HttpResponseRedirect('/')
+				return HttpResponseRedirect('/listarnota/%s' %ruta)
 			else:
-				return HttpResponseRedirect('/crearnotnombre/ruta')
+				return HttpResponseRedirect('/crearnotnombre/%s' %ruta)
 
 
 	else:
