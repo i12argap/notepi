@@ -2,7 +2,7 @@ import dropbox
 import os
 import sys
 import webbrowser
-
+from dropbox import DropboxOAuth2FlowNoRedirect
 class DropNote(object):
 
 	def __init__(self, token):
@@ -10,7 +10,7 @@ class DropNote(object):
 		self.app_key = 'iok20w90lywwjng'
 		self.app_secret = '1ip2creb4oxs83t'
 		self.app_type = 'app_folder'
-		self.flow = dropbox.client.DropboxOAuth2FlowNoRedirect(self.app_key, self.app_secret)
+		self.flow = DropboxOAuth2FlowNoRedirect(self.app_key, self.app_secret)
 
 		self.authorize_url = self.flow.start()
 
@@ -23,16 +23,17 @@ class DropNote(object):
 		return self.authorize_url.replace("api","")
 
 	def connect(self, code):
+    
+		resultado = self.flow.finish(str(code))
+		return resultado.access_token
 
-		access_token, user_id = self.flow.finish(str(code))
-		return access_token
 		
 
 #-----
 
 	def conectar(self, token):
 		
-		self.client = dropbox.client.DropboxClient(token)
+		self.client = dropbox.Dropbox(token)
 #-----
 	
 
@@ -50,22 +51,22 @@ class DropNote(object):
 	#Devolver la informacion sobre carpetas
 
 		lis=[]
-		metadata = self.client.metadata("/")
+		metadata = self.client.files_list_folder("")
 	
-		for x in metadata['contents']:
+		for x in metadata.entries:
 
-			print (x['path'].encode('utf-8'))
+			print (x.path_lower.encode('utf-8'))
 
-			if x['is_dir']==True:
+			if self.client.files_list_folder(x.path_lower):
 
-				lis.append(x['path'])
+				lis.append(x.path_lower)
 		return lis
 
 #----
 #Creacion de carpetas
 	def crearcarpeta(self,carpeta):
 		
-		self.client.file_create_folder('/'+carpeta)
+		self.client.files_create_folder('/'+carpeta)
 
 
 
@@ -73,58 +74,49 @@ class DropNote(object):
 #Creacion de notas
 	def crearnota(self, nombre, ruta):
 
-		resultado = self.client.put_file(ruta+"/"+nombre, "",1)
+		resultado = self.client.resultado = self.client.files_upload(str.encode(""),"/"+ruta+"/"+nombre)
 
 
 #----
 #Borrar carpetas
 	def borrarcarpeta(self, dir):
 		
-		resultado = self.client.file_delete(dir)
+		resultado = self.client.files_delete("/"+dir)
 	
 #----
 #Listar todas las notas 
 	def listarnotas(self, folder):
 		lis=[]
-		metadata = self.client.metadata("/"+folder)
+		metadata = self.client.files_list_folder("/"+folder)
 	
-		for x in metadata['contents']:
+		for x in metadata.entries:
 
-			print(x['path'].encode('utf-8'))
+			print(x.path_lower.encode('utf-8'))
 
-			lis.append(x['path'])
+			lis.append(x.path_lower)
 		return lis
-
 	
 #----
 #Borrar notas
 	def borrarnota(self, ruta, folder):
-		folder= ruta+"/"+folder
+		folder= "/"+ruta+"/"+folder
 
-		resultado = self.client.file_delete(folder)
-
+		resultado = self.client.files_delete(folder)
 
 #----
 #Lectura de las notas
 	def leernota(self, ruta, fichero):
     
-			fichero=ruta+"/"+fichero
+		fichero="/"+ruta+"/"+fichero
             
-			x = self.client.get_file(fichero)
+		x,res = self.client.files_download(fichero)
             
-			y=x.read()
-            
-			x.close()
-            
-			return y
-
+		return res.content
 
 #----
 #Edicion de las notas
 	def modificarnota(self, cambio, ruta):
-		
-		try:
-			resultado = self.client.put_file(ruta, cambio,1)
-		except:
-			print("Error al guardar la nota")
+
+		resultado = self.client.files_upload(cambio,ruta,mode=dropbox.files.WriteMode('overwrite', None))
+
 
